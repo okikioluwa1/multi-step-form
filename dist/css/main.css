@@ -1,0 +1,466 @@
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  height: 100vh;
+  width: 100vw;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  font-family: "Ubuntu", serif;
+}
+
+.container {
+  height: 100%;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 1440px) {
+  .container {
+    flex-direction: row;
+    padding: 1rem;
+  }
+}
+
+.menu {
+  width: 100%;
+  height: 25%;
+  padding-top: 2.5rem;
+  color: hsl(0, 0%, 100%);
+  font-size: 120%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  align-items: flex-start;
+  background: url("/dist/images/bg-sidebar-mobile.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.menu .menu_option {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.menu .menu_number {
+  height: 40px;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  margin-right: 1rem;
+  border-radius: 50%;
+  border: 1px solid hsl(0, 0%, 100%);
+  cursor: pointer;
+}
+@media (min-width: 1440px) {
+  .menu .menu_number {
+    height: 62px;
+    width: 62px;
+    font-size: 200%;
+    margin-right: 2rem;
+  }
+}
+.menu .menu_detail {
+  display: none;
+  font-size: 180%;
+}
+.menu .menu_detail p:first-of-type {
+  color: hsl(231, 11%, 63%);
+  margin-bottom: 5px;
+}
+@media (min-width: 1440px) {
+  .menu .menu_detail {
+    display: block;
+  }
+}
+.menu .active-number {
+  background: hsl(206, 94%, 87%);
+  color: hsl(213, 96%, 18%);
+}
+@media (min-width: 1440px) {
+  .menu {
+    height: 100%;
+    flex-direction: column;
+    flex: 0 0 30%;
+    background: url("/dist/images/bg-sidebar-desktop.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 10px;
+    padding: 5% 0 0 5%;
+    justify-content: flex-start;
+    grid-gap: 5%;
+  }
+}
+
+.main {
+  width: 100%;
+  position: relative;
+  background: hsl(217, 100%, 97%);
+  flex-grow: 1;
+}
+.main .main_info {
+  width: 90%;
+  position: absolute;
+  background: hsl(0, 0%, 100%);
+  color: hsl(213, 96%, 18%);
+  padding: 1.5rem;
+  border-radius: 10px;
+  z-index: 5;
+  top: -13%;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+.main .main_info-heading h3 {
+  font-size: 180%;
+  margin-bottom: 0.5rem;
+}
+@media (min-width: 1440px) {
+  .main .main_info-heading h3 {
+    font-size: 220%;
+  }
+}
+.main .main_info-heading p {
+  color: hsl(231, 11%, 63%);
+}
+@media (min-width: 1440px) {
+  .main .main_info-heading {
+    font-size: 150%;
+  }
+}
+.main .main_info-detail {
+  width: 100%;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.main .main_info-detail form {
+  width: 100%;
+}
+.main .main_info-detail .information {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  align-items: start;
+  margin-bottom: 2rem;
+}
+.main .main_info-detail .information label {
+  margin-bottom: 5px;
+  font-size: 100%;
+}
+.main .main_info-detail .information input {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  border: 2px solid hsl(229, 24%, 87%);
+  border-radius: 5px;
+  outline: none;
+  position: relative;
+}
+.main .main_info-detail .information input:invalid {
+  border: none;
+  outline: 1px solid #f6939d;
+}
+@media (min-width: 1440px) {
+  .main .main_info-detail .information input {
+    padding: 1.5rem;
+    font-size: 100%;
+  }
+}
+@media (min-width: 1440px) {
+  .main .main_info-detail .information {
+    margin-bottom: 5%;
+    font-size: 150%;
+  }
+}
+.main .main_info-detail .plan {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: start;
+  border-radius: 10px;
+  grid-gap: 20px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid hsl(229, 24%, 87%);
+  cursor: pointer;
+}
+.main .main_info-detail .plan-type {
+  color: hsl(231, 11%, 63%);
+}
+.main .main_info-detail .plan-type h4 {
+  margin-bottom: 0.5rem;
+  color: hsl(213, 96%, 18%);
+}
+.main .main_info-detail .plan-type p:last-of-type {
+  display: none;
+  margin-top: 0.4rem;
+  color: hsl(213, 96%, 18%);
+}
+.main .main_info-detail .plan.active-plan, .main .main_info-detail .plan.selected {
+  background: hsl(217, 100%, 97%);
+  border: 1px solid hsl(243, 100%, 62%);
+}
+@media (min-width: 1440px) {
+  .main .main_info-detail .plan {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    font-size: 150%;
+  }
+}
+.main .main_info-detail .service, .main .main_info-detail .check-out {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 2em;
+  font-size: 80%;
+  padding: 1rem;
+  border: 1px solid hsl(229, 24%, 87%);
+  border-radius: 5px;
+}
+.main .main_info-detail .service > p, .main .main_info-detail .check-out > p {
+  color: hsl(243, 100%, 62%);
+}
+.main .main_info-detail .service input, .main .main_info-detail .check-out input {
+  height: 20px;
+  width: 20px;
+  border-radius: 10px;
+}
+@media (min-width: 1440px) {
+  .main .main_info-detail .service input, .main .main_info-detail .check-out input {
+    height: 35px;
+    width: 35px;
+  }
+}
+.main .main_info-detail .service .service-check, .main .main_info-detail .check-out .service-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  grid-gap: 20px;
+}
+.main .main_info-detail .service .service-check p, .main .main_info-detail .check-out .service-check p {
+  color: hsl(231, 11%, 63%);
+  margin-top: 0.3rem;
+}
+@media (min-width: 1440px) {
+  .main .main_info-detail .service, .main .main_info-detail .check-out {
+    font-size: 150%;
+  }
+}
+.main .main_info-detail .selected {
+  border: 1px solid hsl(243, 100%, 62%);
+}
+.main .main_info-detail .check-out {
+  width: 100%;
+  margin-bottom: 0;
+  border: none;
+  font-size: 100%;
+}
+@media (min-width: 1440px) {
+  .main .main_info-detail .check-out {
+    font-size: 150%;
+  }
+}
+.main .main_info-detail .plan-choice div p {
+  color: hsl(231, 11%, 63%);
+  margin-top: 0.5rem;
+  text-decoration: underline;
+}
+.main .main_info-detail .plan-choice > p {
+  color: hsl(213, 96%, 18%);
+  font-weight: 700;
+}
+.main .main_info-detail .total-bill {
+  font-weight: 700;
+}
+.main .main_info-detail .total-bill p:first-of-type {
+  color: hsl(231, 11%, 63%);
+}
+.main .main_info-detail .check-out:not(.total-bill) {
+  background: hsl(217, 100%, 97%);
+}
+.main .main_info-detail .addOn-choice {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.main .main_info-detail .addOn-choice .choice {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.main .main_info-detail .addOn-choice .choice p {
+  color: hsl(231, 11%, 63%);
+}
+.main .main_info-detail .addOn-choice .choice p:last-of-type {
+  color: hsl(213, 96%, 18%);
+}
+.main .main_info-detail .addOn-choice .choice:first-of-type {
+  margin-bottom: 1rem;
+}
+.main .main_info-detail .final-page {
+  width: 90%;
+  text-align: center;
+  margin: 0 auto;
+}
+.main .main_info-detail .final-page img {
+  margin-bottom: 2rem;
+}
+.main .main_info-detail .final-page h3 {
+  margin-bottom: 2rem;
+  font-size: 150%;
+}
+.main .main_info-detail .final-page p {
+  color: hsl(231, 11%, 63%);
+  line-height: 1.5;
+  letter-spacing: 1px;
+  margin-bottom: 2rem;
+}
+@media (min-width: 1440px) {
+  .main .main_info-detail .final-page {
+    margin-top: 5rem;
+    font-size: 200%;
+  }
+  .main .main_info-detail .final-page img {
+    height: 200px;
+    width: 200px;
+  }
+}
+@media (min-width: 1440px) {
+  .main .main_info-detail {
+    margin-top: 5%;
+  }
+}
+.main .main_info-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  grid-gap: 20px;
+  padding: 1rem 0;
+  border-radius: 10px;
+  background: hsl(217, 100%, 97%);
+  display: none;
+}
+.main .main_info-toggle .toggle_bar {
+  width: 40px;
+  height: 21px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: start;
+  padding: 5px;
+  border-radius: 10px;
+  background: hsl(213, 96%, 18%);
+}
+.main .main_info-toggle .toggle_bar .toggle_element {
+  height: 15px;
+  width: 15px;
+  border-radius: 50%;
+  background: hsl(0, 0%, 100%);
+}
+.main .main_info-toggle .yearly {
+  color: hsl(231, 11%, 63%);
+}
+@media (min-width: 1440px) {
+  .main .main_info-toggle {
+    font-size: 150%;
+    padding: 1.5rem 0;
+  }
+}
+@media (min-width: 1440px) {
+  .main .main_info {
+    position: static;
+    top: 0;
+    left: 0;
+    transform: none;
+    width: 100%;
+    height: 100%;
+    padding: 6% 6%;
+    font-size: 120%;
+  }
+}
+.main .navigation {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
+  background: hsl(0, 0%, 100%);
+  width: 100%;
+  padding: 1rem 1.5rem;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  font-size: 1rem;
+}
+.main .navigation p {
+  color: hsl(231, 11%, 63%);
+  opacity: 0;
+  margin-left: 1rem;
+  cursor: pointer;
+}
+@media (min-width: 1440px) {
+  .main .navigation p {
+    font-size: 200%;
+  }
+}
+.main .navigation .btn {
+  border: none;
+  background: hsl(213, 96%, 18%);
+  padding: 0.5rem 1rem;
+  color: hsl(229, 24%, 87%);
+  border-radius: 5px;
+}
+@media (min-width: 1440px) {
+  .main .navigation .btn {
+    font-size: 180%;
+    border-radius: 10px;
+    padding: 1rem 2rem;
+  }
+}
+
+.yearlyPlan .monthly {
+  color: hsl(231, 11%, 63%);
+}
+.yearlyPlan .main_info-toggle .yearly {
+  color: hsl(213, 96%, 18%);
+}
+.yearlyPlan .toggle_element {
+  transform: translatex(100%);
+}
+.yearlyPlan .plan .plan-type p:last-of-type {
+  display: block;
+}/*# sourceMappingURL=main.css.map */
