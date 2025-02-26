@@ -342,18 +342,6 @@
       }
     }
 
-    // .planDesktop-class {
-    //   @include flexDisplay(row);
-    //   grid-gap: 30px;
-    //   margin: 3rem 0;
-
-    //   img {
-    //     transform-origin: 0% 0%;
-    //     transform: scale(2);
-    //     margin-bottom: 6rem;
-    //   }
-    // }
-
     &-toggle {
       width: 100%;
       @include flexDisplay(row);
@@ -399,6 +387,18 @@
       height: 100%;
       padding: 6% 6%;
       font-size: 120%;
+
+      .planDesktop-class {
+        @include flexDisplay(row);
+        grid-gap: 30px;
+        margin: 3rem 0;
+
+        img {
+          transform-origin: 0% 0%;
+          transform: scale(2);
+          margin-bottom: 6rem;
+        }
+      }
     }
   }
 
@@ -429,6 +429,10 @@
       padding: 0.5rem 1rem;
       color: $border-color;
       border-radius: 5px;
+
+      &.confirm_btn {
+        display: none;
+      }
 
       @include desktop {
         font-size: 180%;

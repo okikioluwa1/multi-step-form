@@ -411,6 +411,19 @@ body {
     padding: 6% 6%;
     font-size: 120%;
   }
+  .main .main_info .planDesktop-class {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    grid-gap: 30px;
+    margin: 3rem 0;
+  }
+  .main .main_info .planDesktop-class img {
+    transform-origin: 0% 0%;
+    transform: scale(2);
+    margin-bottom: 6rem;
+  }
 }
 .main .navigation {
   display: flex;
@@ -443,6 +456,9 @@ body {
   padding: 0.5rem 1rem;
   color: hsl(229, 24%, 87%);
   border-radius: 5px;
+}
+.main .navigation .btn.confirm_btn {
+  display: none;
 }
 @media (min-width: 1440px) {
   .main .navigation .btn {

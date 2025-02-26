@@ -2,6 +2,7 @@ let currentMenuIndex;
 currentMenuIndex = 0;
 
 const nextBtn = document.querySelector(".next_btn");
+const confirmBtn = document.querySelector(".confirm_btn");
 const goBack = document.querySelector(".goBack");
 const menuNumbers = document.querySelectorAll(".menu_number");
 const detailContainer = document.querySelector(".main_info-detail");
@@ -10,6 +11,7 @@ const toggleBar = document.querySelector(".toggle_bar");
 const toggleEl = document.querySelector(".toggle_element");
 const mainInfo = document.querySelector(".main_info");
 const headingContainer = document.querySelector(".main_info-heading");
+const navigationBar = document.querySelector(".navigation");
 
 let headingMarkup;
 let selectedPlanEl;
@@ -17,7 +19,59 @@ let selectedServicesArr = [];
 
 let bills;
 let duration;
+//
+//
+//clear container function
+const clearContainers = function () {
+  detailContainer.innerHTML = "";
+  headingContainer.innerHTML = "";
+};
+//initial menu variable/markup
+const generateMarkup0 = function () {
+  const formMarkup = ` <form action="">
+              <div class="information main_info-name">
+                <label for="name">Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  placeholder="e.g Okiki Odedina"
+                />
+              </div>
+              <div class="information main_info-email">
+                <label for="email">Email Address</label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  placeholder="e.g odedinaokiki20@gmail.com"
+                />
+              </div>
+              <div class="information main_info-phone">
+                <label for="phone">Phone Number</label>
+                <input
+                  type="number"
+                  name="phone"
+                  id="phone"
+                  placeholder="e.g +234 90 389 124 46"
+                />
+              </div>
+            </form>`;
+  return formMarkup;
+};
 
+const renderFormMarkup = function () {
+  clearContainers();
+  toggleSection.style.display = "none";
+  headingMarkup = `<h3>Personal info</h3>
+            <p>Please provide your name email address and phone number</p>`;
+  headingContainer.innerHTML = headingMarkup;
+  detailContainer.insertAdjacentHTML("afterbegin", generateMarkup0());
+};
+if (currentMenuIndex === 0) renderFormMarkup();
+
+//
+//
 //first menu variable/markup
 const plans = ["arcade", "advanced", "pro"];
 const generateMarkup1 = function (plan, bill, duration) {
@@ -40,6 +94,21 @@ const renderMarkup1 = function (plans, bills, duration) {
   }
 };
 
+const renderIndex1 = function () {
+  toggleSection.style.display = "flex";
+
+  clearContainers();
+  headingMarkup = `<h3>Select your plan</h3>
+                <p>You have the option of monthly or yearly billing</p>`;
+
+  duration = "mo";
+  bills = [9, 12, 15];
+
+  renderMarkup1(plans, bills, duration);
+  headingContainer.innerHTML = headingMarkup;
+};
+//
+//
 //second menu variable/markup
 const services = ["services", "storage", "profile"];
 const servicesMarkup = [
@@ -77,8 +146,44 @@ const renderMarkup2 = function (servicesMarkup, services, bills, duration) {
   }
 };
 
-//third menu variale/markup
+const renderIndex2 = function () {
+  toggleSection.style.display = "none";
 
+  clearContainers();
+  headingMarkup = `<h3>Pick add-ons</h3>
+                <p>Add-ons help enhance your gaming experience</p>`;
+
+  bills = [1, 2, 2];
+  const billsYr = bills.map((bill) => bill * 10);
+  bills = !mainInfo.classList.contains("yearlyPlan") ? bills : billsYr;
+  duration = !mainInfo.classList.contains("yearlyPlan") ? "mo" : "yr";
+
+  renderMarkup2(servicesMarkup, services, bills, duration);
+  headingContainer.innerHTML = headingMarkup;
+
+  //
+  //
+  //
+  const checkboxes = [...document.querySelectorAll("input[type=checkbox]")];
+  checkboxes.forEach((checkbox) => {
+    checkbox.addEventListener("change", function () {
+      const selectedContainer = this.closest(".service");
+      if (this.checked) {
+        selectedContainer.classList.add("selected");
+        selectedServicesArr.push(selectedContainer);
+      } else {
+        selectedServicesArr = selectedServicesArr.filter((arr) => {
+          arr !== selectedContainer;
+        });
+        selectedContainer.classList.remove("selected");
+      }
+    });
+  });
+};
+//
+//
+//
+//third menu variale/markup
 const generateMarkup3 = function () {
   const checkoutMarkup = ` <div class="check-out plan-choice">
               <div>
@@ -104,18 +209,122 @@ const generateMarkup3 = function () {
   return checkoutMarkup;
 };
 
-//
-//
-//
-let renderIndex1;
-let renderIndex2;
-let renderIndex3;
-//
-//
-//
-nextBtn.addEventListener("click", function () {
-  currentMenuIndex++;
+const renderIndex3 = function () {
+  console.log(selectedPlanEl, selectedServicesArr);
+  clearContainers();
 
+  headingMarkup = `<h3>Finishing-up</h3>
+                <p>Double-check everything looks okay before confirming </p>`;
+  headingContainer.innerHTML = headingMarkup;
+
+  const generatePlanMarkup = function (plan, durationState, bill) {
+    const planMarkup = `<div class="check-out plan-choice">
+          <div>
+            <h4>${plan}(${durationState})</h4>
+            <p>change</p>
+          </div>
+          <p>${bill}</p>
+        </div>`;
+    return planMarkup;
+  };
+  //
+  //
+  const renderPlanMarkup = function (plan, durationState, bill) {
+    detailContainer.insertAdjacentHTML(
+      "beforeend",
+      generatePlanMarkup(plan, durationState, bill)
+    );
+  };
+
+  const bill = selectedPlanEl.querySelectorAll("p")[0].textContent;
+  const plan = selectedPlanEl.querySelector("h4").textContent;
+  const durationState = !mainInfo.classList.contains("yearlyPlan")
+    ? "Monthly"
+    : "Yearly";
+
+  renderPlanMarkup(plan, durationState, bill);
+
+  //
+  //
+  //
+
+  const generateAddOnMarkup = function (addOn, bill) {
+    const addOnMarkup = ` <div class="check-out addOn-choice">
+            <div class="choice choice1">
+            <p>${addOn}</p>
+            <p>${bill}</p>
+            </div>
+            </div>`;
+    return addOnMarkup;
+  };
+
+  const addOnBills = [];
+  selectedServicesArr.forEach((addOn) => {
+    const bill = addOn.querySelectorAll("p")[1].textContent;
+    addOnBills.push(bill);
+    const addOnText = addOn.querySelector("h4").textContent;
+
+    detailContainer.insertAdjacentHTML(
+      "beforeend",
+      generateAddOnMarkup(addOnText, bill)
+    );
+  });
+  //
+  //
+  //
+  const sumBillArr = [];
+  [bill, ...addOnBills].forEach((bill, i) => {
+    const sliceBill = (cutIndex) => sumBillArr.push(+bill.slice(cutIndex, -3));
+    if (i === 0) sliceBill(1);
+    else sliceBill(2);
+  });
+  let totalBill = 0;
+  sumBillArr.forEach((bill) => (totalBill += bill));
+
+  const generateTotalMarkup = function (durationFull, total, duration) {
+    const totalMarkup = `<div class="check-out total-bill">
+          <p>Total (per ${durationFull})</p>
+          <p>+$${total}/${duration}</p>
+        </div>`;
+    return totalMarkup;
+  };
+
+  const renderTotalMarkup = function (durationFull, total, duration) {
+    detailContainer.insertAdjacentHTML(
+      "beforeend",
+      generateTotalMarkup(durationFull, total, duration)
+    );
+  };
+
+  duration = !mainInfo.classList.contains("yearlyPlan") ? "mo" : "yr";
+  const durationFull = !mainInfo.classList.contains("yearlyPlan")
+    ? "Month"
+    : "Year";
+  renderTotalMarkup(durationFull, totalBill, duration);
+};
+
+//final markup
+const generateFinalMarkup = function () {
+  const finalMarkup = `<div class="final-page">
+              <img src="./images/icon-thank-you.svg" alt="Thanks-img" />
+              <h3>Thank you!</h3>
+              <p>
+                Thanks for confirming your subscription! We hope you have fun
+                using our platform. If you ever need support, please feel free
+                to email us at odedinaokiki20@gmail.com
+              </p>
+            </div>`;
+  return finalMarkup;
+};
+
+const renderFinalMarkup = function () {
+  clearContainers();
+  detailContainer.innerHTML = generateFinalMarkup();
+};
+//
+//
+//
+const showActiveMenu = function () {
   currentMenuIndex !== 0
     ? (goBack.style.opacity = 1)
     : (goBack.style.opacity = 0);
@@ -127,171 +336,33 @@ nextBtn.addEventListener("click", function () {
     if (currentMenuIndex === +menuNum.classList[1].slice(-1))
       menuNum.classList.add("active-number");
   });
-  // if (currentMenuIndex === 3) this.style.display = "none";
+};
+//
+//
+//add/remove desktop view
+const addRemoveDesktopView = (action) =>
+  detailContainer.classList[action]("planDesktop-class");
+//
+//
 
-  //clear container function
-  const clearContainers = function () {
-    detailContainer.innerHTML = "";
-    headingContainer.innerHTML = "";
-  };
-  //
-  //
-  //
+nextBtn.addEventListener("click", function () {
+  currentMenuIndex++;
+  showActiveMenu();
 
   if (currentMenuIndex === 1) {
-    renderIndex1 = function () {
-      toggleSection.style.display = "flex";
-
-      clearContainers();
-      headingMarkup = `<h3>Select your plan</h3>
-                    <p>You have the option of monthly or yearly billing</p>`;
-
-      duration = "mo";
-      bills = [9, 12, 15];
-
-      renderMarkup1(plans, bills, duration);
-      headingContainer.innerHTML = headingMarkup;
-    };
+    addRemoveDesktopView("add");
     renderIndex1();
   }
-  //
-  //
-  //
-
   if (currentMenuIndex === 2) {
-    renderIndex2 = function () {
-      toggleSection.style.display = "none";
-
-      clearContainers();
-      headingMarkup = `<h3>Pick add-ons</h3>
-                    <p>Add-ons help enhance your gaming experience</p>`;
-
-      bills = [1, 2, 2];
-      const billsYr = bills.map((bill) => bill * 10);
-      bills = !mainInfo.classList.contains("yearlyPlan") ? bills : billsYr;
-      duration = !mainInfo.classList.contains("yearlyPlan") ? "mo" : "yr";
-
-      renderMarkup2(servicesMarkup, services, bills, duration);
-      headingContainer.innerHTML = headingMarkup;
-
-      //
-      //
-      //
-      const checkboxes = [...document.querySelectorAll("input[type=checkbox]")];
-      checkboxes.forEach((checkbox) => {
-        checkbox.addEventListener("change", function () {
-          const selectedContainer = this.closest(".service");
-          if (this.checked) {
-            selectedContainer.classList.add("selected");
-            selectedServicesArr.push(selectedContainer);
-          } else {
-            selectedServicesArr = selectedServicesArr.filter((arr) => {
-              arr !== selectedContainer;
-            });
-            selectedContainer.classList.remove("selected");
-          }
-        });
-      });
-    };
+    addRemoveDesktopView("remove");
     renderIndex2();
   }
-
   if (currentMenuIndex === 3) {
-    renderIndex3 = function () {
-      console.log(selectedPlanEl, selectedServicesArr);
-      clearContainers();
-
-      headingMarkup = `<h3>Finishing-up</h3>
-                    <p>Double-check everything looks okay before confirming </p>`;
-      headingContainer.innerHTML = headingMarkup;
-
-      const generatePlanMarkup = function (plan, durationState, bill) {
-        const planMarkup = `<div class="check-out plan-choice">
-              <div>
-                <h4>${plan}(${durationState})</h4>
-                <p>change</p>
-              </div>
-              <p>${bill}</p>
-            </div>`;
-        return planMarkup;
-      };
-      //
-      //
-      const renderPlanMarkup = function (plan, durationState, bill) {
-        detailContainer.insertAdjacentHTML(
-          "beforeend",
-          generatePlanMarkup(plan, durationState, bill)
-        );
-      };
-
-      const bill = selectedPlanEl.querySelectorAll("p")[0].textContent;
-      const plan = selectedPlanEl.querySelector("h4").textContent;
-      const durationState = !mainInfo.classList.contains("yearlyPlan")
-        ? "Monthly"
-        : "Yearly";
-
-      renderPlanMarkup(plan, durationState, bill);
-
-      //
-      //
-      //
-
-      const generateAddOnMarkup = function (addOn, bill) {
-        const addOnMarkup = ` <div class="check-out addOn-choice">
-                <div class="choice choice1">
-                <p>${addOn}</p>
-                <p>${bill}</p>
-                </div>
-                </div>`;
-        return addOnMarkup;
-      };
-
-      const addOnBills = [];
-      selectedServicesArr.forEach((addOn) => {
-        const bill = addOn.querySelectorAll("p")[1].textContent;
-        addOnBills.push(bill);
-        const addOnText = addOn.querySelector("h4").textContent;
-
-        detailContainer.insertAdjacentHTML(
-          "beforeend",
-          generateAddOnMarkup(addOnText, bill)
-        );
-      });
-      //
-      //
-      //
-      const sumBillArr = [];
-      [bill, ...addOnBills].forEach((bill, i) => {
-        const sliceBill = (cutIndex) =>
-          sumBillArr.push(+bill.slice(cutIndex, -3));
-        if (i === 0) sliceBill(1);
-        else sliceBill(2);
-      });
-      let totalBill = 0;
-      sumBillArr.forEach((bill) => (totalBill += bill));
-
-      const generateTotalMarkup = function (durationFull, total, duration) {
-        const totalMarkup = `<div class="check-out total-bill">
-              <p>Total (per ${durationFull})</p>
-              <p>+$${total}/${duration}</p>
-            </div>`;
-        return totalMarkup;
-      };
-
-      const renderTotalMarkup = function (durationFull, total, duration) {
-        detailContainer.insertAdjacentHTML(
-          "beforeend",
-          generateTotalMarkup(durationFull, total, duration)
-        );
-      };
-
-      duration = !mainInfo.classList.contains("yearlyPlan") ? "mo" : "yr";
-      const durationFull = !mainInfo.classList.contains("yearlyPlan")
-        ? "Month"
-        : "Year";
-      renderTotalMarkup(durationFull, totalBill, duration);
-    };
+    this.style.display = "none";
+    confirmBtn.style.display = "block";
     renderIndex3();
+  }
+  if (currentMenuIndex === 4) {
   }
 });
 //
@@ -327,12 +398,23 @@ detailContainer.addEventListener("click", function (e) {
 //
 //
 //
+goBack.addEventListener("click", function () {
+  currentMenuIndex--;
+  showActiveMenu();
 
-[...menuNumbers].forEach((menuNum) => {
-  menuNum.addEventListener("click", function (e) {
-    const menuNumContainer = e.target.closest(".menu_number");
-    if (+menuNumContainer.textContent === 2) renderIndex1();
-    else if (+menuNumContainer.textContent === 3) renderIndex2();
-    else if (+menuNumContainer.textContent === 4) renderIndex3();
-  });
+  if (currentMenuIndex === 0) {
+    addRemoveDesktopView("remove");
+    renderFormMarkup();
+  }
+  if (currentMenuIndex === 1) {
+    addRemoveDesktopView("add");
+    renderIndex1();
+  }
+  if (currentMenuIndex === 2) renderIndex2();
+  if (currentMenuIndex === 3) renderIndex3();
+});
+
+confirmBtn.addEventListener("click", function () {
+  navigationBar.style.display = "none";
+  renderFinalMarkup();
 });
