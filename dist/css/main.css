@@ -41,7 +41,7 @@ body {
   justify-content: center;
   flex-direction: row;
   align-items: flex-start;
-  background: url("../dist/images/bg-sidebar-mobile.svg");
+  background: url("/dist/images/bg-sidebar-mobile.svg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -91,7 +91,7 @@ body {
     height: 100%;
     flex-direction: column;
     flex: 0 0 30%;
-    background: url("../dist/images/bg-sidebar-desktop.svg");
+    background: url("/dist/images/bg-sidebar-desktop.svg");
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 10px;
