@@ -41,7 +41,7 @@ body {
   justify-content: center;
   flex-direction: row;
   align-items: flex-start;
-  background: url("/dist/images/bg-sidebar-mobile.svg");
+  background: url("../dist/images/bg-sidebar-mobile.svg");
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -65,15 +65,13 @@ body {
 }
 @media (min-width: 1440px) {
   .menu .menu_number {
-    height: 62px;
-    width: 62px;
-    font-size: 200%;
+    font-size: 120%;
     margin-right: 2rem;
   }
 }
 .menu .menu_detail {
   display: none;
-  font-size: 180%;
+  font-size: 120%;
 }
 .menu .menu_detail p:first-of-type {
   color: hsl(231, 11%, 63%);
@@ -93,11 +91,11 @@ body {
     height: 100%;
     flex-direction: column;
     flex: 0 0 30%;
-    background: url("/dist/images/bg-sidebar-desktop.svg");
+    background: url("../dist/images/bg-sidebar-desktop.svg");
     background-repeat: no-repeat;
     background-size: cover;
     border-radius: 10px;
-    padding: 5% 0 0 5%;
+    padding: 3% 0 0 5%;
     justify-content: flex-start;
     grid-gap: 5%;
   }
@@ -117,7 +115,7 @@ body {
   padding: 1.5rem;
   border-radius: 10px;
   z-index: 5;
-  top: -13%;
+  top: -15%;
   left: 50%;
   transform: translate(-50%, 0);
 }
@@ -127,7 +125,7 @@ body {
 }
 @media (min-width: 1440px) {
   .main .main_info-heading h3 {
-    font-size: 220%;
+    font-size: 180%;
   }
 }
 .main .main_info-heading p {
@@ -135,7 +133,7 @@ body {
 }
 @media (min-width: 1440px) {
   .main .main_info-heading {
-    font-size: 150%;
+    font-size: 120%;
   }
 }
 .main .main_info-detail {
@@ -157,7 +155,7 @@ body {
   justify-content: center;
   flex-direction: column;
   align-items: start;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 .main .main_info-detail .information label {
   margin-bottom: 5px;
@@ -177,14 +175,14 @@ body {
 }
 @media (min-width: 1440px) {
   .main .main_info-detail .information input {
-    padding: 1.5rem;
+    padding: 1rem;
     font-size: 100%;
   }
 }
 @media (min-width: 1440px) {
   .main .main_info-detail .information {
     margin-bottom: 5%;
-    font-size: 150%;
+    font-size: 120%;
   }
 }
 .main .main_info-detail .plan {
@@ -196,9 +194,10 @@ body {
   justify-content: flex-start;
   align-items: start;
   border-radius: 10px;
+  font-size: 90%;
   grid-gap: 20px;
-  padding: 1.5rem;
-  margin-bottom: 1rem;
+  padding: 1rem;
+  margin-bottom: 0.7rem;
   border: 1px solid hsl(229, 24%, 87%);
   cursor: pointer;
 }
@@ -206,13 +205,24 @@ body {
   color: hsl(231, 11%, 63%);
 }
 .main .main_info-detail .plan-type h4 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
   color: hsl(213, 96%, 18%);
+}
+@media (min-width: 1440px) {
+  .main .main_info-detail .plan-type h4 {
+    margin-bottom: 0.5rem;
+  }
 }
 .main .main_info-detail .plan-type p:last-of-type {
   display: none;
-  margin-top: 0.4rem;
+  margin-top: 0.3rem;
   color: hsl(213, 96%, 18%);
+  font-size: 90%;
+}
+@media (min-width: 1440px) {
+  .main .main_info-detail .plan-type p:last-of-type {
+    margin-top: 0.5rem;
+  }
 }
 .main .main_info-detail .plan.active-plan, .main .main_info-detail .plan.selected {
   background: hsl(217, 100%, 97%);
@@ -226,7 +236,7 @@ body {
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    font-size: 150%;
+    font-size: 130%;
   }
 }
 .main .main_info-detail .service, .main .main_info-detail .check-out {
@@ -236,7 +246,7 @@ body {
   justify-content: center;
   flex-direction: row;
   justify-content: space-between;
-  margin-bottom: 2em;
+  margin-bottom: 1.5rem;
   font-size: 80%;
   padding: 1rem;
   border: 1px solid hsl(229, 24%, 87%);
@@ -252,8 +262,8 @@ body {
 }
 @media (min-width: 1440px) {
   .main .main_info-detail .service input, .main .main_info-detail .check-out input {
-    height: 35px;
-    width: 35px;
+    height: 30px;
+    width: 30px;
   }
 }
 .main .main_info-detail .service .service-check, .main .main_info-detail .check-out .service-check {
@@ -269,7 +279,7 @@ body {
 }
 @media (min-width: 1440px) {
   .main .main_info-detail .service, .main .main_info-detail .check-out {
-    font-size: 150%;
+    font-size: 135%;
   }
 }
 .main .main_info-detail .selected {
@@ -348,12 +358,12 @@ body {
 }
 @media (min-width: 1440px) {
   .main .main_info-detail .final-page {
-    margin-top: 5rem;
-    font-size: 200%;
+    margin-top: 2.5rem;
+    font-size: 150%;
   }
   .main .main_info-detail .final-page img {
-    height: 200px;
-    width: 200px;
+    height: 120px;
+    width: 120px;
   }
 }
 @media (min-width: 1440px) {
@@ -368,28 +378,42 @@ body {
   justify-content: center;
   flex-direction: row;
   grid-gap: 20px;
-  padding: 1rem 0;
+  padding: 0.5rem 0;
   border-radius: 10px;
   background: hsl(217, 100%, 97%);
   display: none;
+  font-size: 80%;
 }
 .main .main_info-toggle .toggle_bar {
-  width: 40px;
-  height: 21px;
+  width: 30px;
+  height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: row;
   justify-content: start;
-  padding: 5px;
+  padding: 3px;
   border-radius: 10px;
   background: hsl(213, 96%, 18%);
 }
 .main .main_info-toggle .toggle_bar .toggle_element {
-  height: 15px;
-  width: 15px;
+  height: 12px;
+  width: 12px;
   border-radius: 50%;
   background: hsl(0, 0%, 100%);
+}
+@media (min-width: 1440px) {
+  .main .main_info-toggle .toggle_bar .toggle_element {
+    height: 15px;
+    width: 15px;
+  }
+}
+@media (min-width: 1440px) {
+  .main .main_info-toggle .toggle_bar {
+    height: 25px;
+    width: 40px;
+    padding: 5px;
+  }
 }
 .main .main_info-toggle .yearly {
   color: hsl(231, 11%, 63%);
@@ -408,7 +432,7 @@ body {
     transform: none;
     width: 100%;
     height: 100%;
-    padding: 6% 6%;
+    padding: 4% 6%;
     font-size: 120%;
   }
   .main .main_info .planDesktop-class {
@@ -422,7 +446,7 @@ body {
   .main .main_info .planDesktop-class img {
     transform-origin: 0% 0%;
     transform: scale(2);
-    margin-bottom: 6rem;
+    margin-bottom: 4rem;
   }
 }
 .main .navigation {
@@ -447,7 +471,7 @@ body {
 }
 @media (min-width: 1440px) {
   .main .navigation p {
-    font-size: 200%;
+    font-size: 150%;
   }
 }
 .main .navigation .btn {
@@ -462,9 +486,9 @@ body {
 }
 @media (min-width: 1440px) {
   .main .navigation .btn {
-    font-size: 180%;
+    font-size: 150%;
     border-radius: 10px;
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
   }
 }
 
